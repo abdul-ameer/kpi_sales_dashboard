@@ -33,7 +33,7 @@ The **KPI Sales Dashboard** is a custom Odoo module that provides a comprehensiv
 
 ## Dependencies
 <ul>sale_management </ul>
-<ul>web</ul>wb
+<ul>web</ul>
 <ul>sale</ul>
 <ul>board/ul>
 
