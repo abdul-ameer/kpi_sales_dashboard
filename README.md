@@ -16,7 +16,7 @@ The **KPI Sales Dashboard** is a custom Odoo module that provides a comprehensiv
 
 ## Installation
 
-1. Copy the `kpi_sales_dashboard` folder into your Odoo `addons` directory.
+1. Copy the `kpi_sales_dashboard` folder into your Odoo17 `addons` directory.
 2. Restart the Odoo server:
    ```bash
    ./odoo-bin -u kpi_sales_dashboard
