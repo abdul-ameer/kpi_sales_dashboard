@@ -1,0 +1,96 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<templates xml:space="preserve">
+    <t t-name="custom_dashboard.OwlCustomDashboard" owl="1">
+        <div class="vh-100 overflow-auto bg-muted">
+            <div class="row m-3">
+                <div class="col-lg-8">
+                    <div class="row">
+                        <div class="col m-0 p-0">
+                            <div class="shadow-sm border m-2 p-4 bg-white rounded-3">
+                                <div class="d-flex align-items-center justify-content-between">
+                                    <h1 class="text-primary fw-bold">Sales Dashboard</h1>
+                                    <div class="d-flex justify-content-between">
+                                        <select class="form-select" t-model="state.period" t-on-change="onChangePeriod">
+                                            <option value="0">Select Period</option>
+                                            <option value="7">Last 7 Days</option>
+                                            <option value="30">Last 30 Days</option>
+                                            <option value="90">Last 90 Days</option>
+                                            <option value="365">Last 365 Days</option>
+                                        </select>
+
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <KpiCard onClick.bind="viewQuotations" name="'Quotations'" value="state.quotations.value"/>
+                        <KpiCard onClick.bind="viewOrders" name="'Orders'" value="state.orders.value" />
+                        <KpiCard onClick.bind="viewRevenues" name="'Revenues'" value="state.orders.revenue"/>
+                        <KpiCard onClick.bind="viewRevenues" name="'Average Order'" value="state.orders.average" />
+                    </div>
+                    <div class="row">
+                        <div class="col-lg-6 m-0 p-0">
+                            <div class="shadow-sm border m-2 p-4 bg-white rounded-3">
+                                <div class="d-flex align-items-center justify-content-between">
+                                    <h3 class="text-primary fw-bold">Top Products</h3>
+                                </div>
+                                    <div class="table-responsive" style="overflow-y: auto;">
+                                        <table class="table table-hover table-bordered">
+                                            <thead class="bg-light text-dark position-sticky top-0" style="z-index: 1;">
+                                                <tr>
+                                                    <th scope="col">Product</th>
+                                                    <th scope="col">Orders</th>
+                                                    <th scope="col">Revenue</th>
+                                                </tr>
+                                            </thead>
+                                            <tbody>
+                                                <t t-foreach="state.topProducts" t-as="product" t-key="product.product_id[0]">
+                                                    <tr>
+                                                        <td><t t-esc="product.product_id[1]" /></td>
+                                                        <td><t t-esc="product.__count" /></td>
+                                                        <td><t t-esc="product.price_total" /></td>
+                                                    </tr>
+                                                </t>
+                                            </tbody>
+                                        </table>
+                                    </div>
+                            </div>
+                        </div>
+                        <div class="col-lg-6 m-0 p-0">
+                            <div class="shadow-sm border m-2 p-4 bg-white rounded-3">
+                                <div class="d-flex align-items-center justify-content-between">
+                                    <h3 class="text-primary fw-bold">Top Sales People</h3>
+                                </div>
+                                <ApexRenderer type="'donut'" title="'Top Sales People Report'" config="state.topSalesPeople"/>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-4">
+                    <div class="row">
+                        <div class="col m-0 p-0">
+                            <div class="shadow-sm border m-2 p-4 bg-white rounded-3">
+                                <div class="d-flex align-items-center justify-content-between">
+                                    <h3 class="text-primary fw-bold">Monthly Sales</h3>
+                                </div>
+                                <ApexRenderer type="'bar'" title="'Monthly Sales Report'" config="state.monthlySales"/>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col m-0 p-0">
+                            <div class="shadow-sm border m-2 p-4 bg-white rounded-3">
+                                <div class="d-flex align-items-center justify-content-between">
+                                    <h3 class="text-primary fw-bold">Partner Orders</h3>
+                                </div>
+                                <ApexRenderer type="'line'" title="'Partner Orders Report'" config="state.partnerOrders"/>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </t>
+</templates>
+
